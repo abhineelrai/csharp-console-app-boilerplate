@@ -1,0 +1,26 @@
+{
+	"Serilog": {
+		"MinimumLevel": "Information",
+		"WriteTo": [
+			{
+				"Name": "Console",
+				"Args": {
+					"theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
+					"outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:j}{NewLine}{Exception}"
+				}
+			},
+			{
+				"Name": "File",
+				"Args": {
+					"path": "<YOUR FILE PATH HERE>",
+					"theme": "Serilog.Sinks.File",
+					"outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:j}{NewLine}{Exception}"
+				}
+			}
+		],
+		"Enrich": [ "FromLogContext", "WithMachineName", "WithExceptionDetails" ],
+		"Properties": {
+			"ApplicationName": "MigrationPOC"
+		}
+	}
+}
